@@ -1,0 +1,143 @@
+
+.filter-sidebar {
+	display: none;
+}
+
+.sorting-results-modifier-container {
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+	> memo-filtering-menu,
+	> memo-sorting-dropdown {
+		width: 50%;
+		height: 40px;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		background-color: white;
+	}
+}
+
+.search-results-header {
+	display: none;
+	color: grey;
+	margin: 0.5rem;
+	font-size: 0.8rem;
+
+	.search-results-actions {
+		display: flex;
+
+		memo-filtering-menu {
+			margin-right: 20px;
+		}
+	}
+
+	memo-filtering-menu,
+	memo-sorting-dropdown {
+		display: none;
+	}
+}
+
+@mixin search-results-header-width($amountOfCards) {
+	@media all and (min-width: 400px + $amountOfCards * (300px + 16px)) {
+		width: 316px * $amountOfCards - 16px;
+	}
+}
+
+.results-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: calc(100vh - 64px);
+}
+
+.flex-row {
+	display: flex;
+}
+
+.mobile-add-button-container {
+	display: flex;
+	width: 100%;
+	background: white;
+
+	.mobile-add-button {
+		width: 100%;
+		border: 0;
+		color: grey;
+		border-top: 1px solid #e0e0e0;
+
+		/deep/ mat-icon {
+			margin-top: -3px;
+		}
+	}
+}
+
+/deep/ .loader-wrapper {
+	transform: translateY(120px);
+}
+
+@media all and (min-width: 650px) {
+	:host {
+		display: flex;
+		background: white;
+		.filter-sidebar {
+			display: block;
+			width: 350px;
+			padding: 0.85rem;
+			border-right: 1px solid #cdcdcd;
+		}
+		.results-container {
+			width: 100%;
+			background: #ededed;
+		}
+	}
+
+	.mobile-add-button-container {
+		display: none;
+	}
+
+	memo-results {
+		padding: 1rem;
+		background: #ededed;
+		min-height: calc(100vh - 64px - 113px);
+	}
+
+	.sorting-results-modifier-container {
+		display: none;
+	}
+
+	.search-results-header {
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem;
+		margin: 0;
+		border-bottom: 1px solid #cdcdcd;
+		background: white;
+		align-items: center;
+
+		memo-filtering-menu,
+		memo-sorting-dropdown {
+			display: block;
+		}
+
+		memo-filtering-menu {
+			display: none;
+		}
+	}
+	.search-results-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.add-button {
+		margin-top: -10px;
+		margin-bottom: -10px;
+		margin-right: 20px;
+		color: black;
+	}
+}
+
+
+

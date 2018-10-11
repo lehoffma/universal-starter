@@ -1,0 +1,26 @@
+<mat-list>
+	<span *ngFor="let participant of (participants | slice:0:amountOfParticipantsShown)">
+		<mat-list-item
+			(click)="showDetailsOfUser(participant.user)">
+			<img mat-list-avatar
+				 src="{{(participant.user.images.length > 0 ? participant.user.images[0]: 'resources/images/Logo.png') | imageSize:'thumbnail' | async}}"
+				 alt="Profilbild von {{participant?.user?.firstName + ' ' + participant?.user?.surname}}">
+			<h3 matLine> {{participant?.user?.firstName + " " + participant?.user?.surname}} </h3>
+			<p matLine>
+				<span> {{participant?.user?.clubRole}} </span>
+				<span class="secondary-text"> -- {{(participant?.user | miles | async) || 0}} Meilen </span>
+			</p>
+		</mat-list-item>
+		<mat-divider></mat-divider>
+	</span>
+	<mat-list-item *ngIf="!participants || participants.length === 0">
+		Bisher keine Teilnehmer.
+	</mat-list-item>
+</mat-list>
+
+<button mat-button type="button" *ngIf="participants?.length > 3" (click)="expandedStatus = !expandedStatus">
+	<span>{{expandedStatus ? 'Weniger' : 'Mehr'}}</span>
+	<mat-icon [@expandedState]="expandedStatus">expand_more</mat-icon>
+</button>
+
+

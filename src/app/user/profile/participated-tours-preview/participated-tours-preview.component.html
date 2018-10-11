@@ -1,0 +1,27 @@
+<div class="profile-tours-container">
+	<mat-list>
+		<a *ngFor="let recentEvent of (userEvents | slice:0:amountOfEventsShown); let lastTour = last"
+		   routerLink="{{getLink(recentEvent)}}">
+			<mat-list-item>
+				<img mat-list-avatar
+					 src="{{(recentEvent?.images.length > 0 ? recentEvent?.images[0]: 'resources/images/Logo.png') | imageSize:'thumbnail' | async}}"
+					 alt="picture of the {{recentEvent.title}} event">
+				<h3 matLine> {{recentEvent.title}} </h3>
+				<p matLine>
+					<span class="secondary-text"> {{distanceInWords(recentEvent.date)}} </span>
+				</p>
+			</mat-list-item>
+			<mat-divider *ngIf="!lastTour"></mat-divider>
+		</a>
+	</mat-list>
+
+	<button mat-button *ngIf="userEvents?.length > 3" type="button" (click)="expandedStatus = !expandedStatus">
+		<span>{{expandedStatus ? 'Weniger' : 'Mehr'}}</span>
+		<mat-icon [@expandedState]="expandedStatus">expand_more</mat-icon>
+	</button>
+
+</div>
+
+<div class="no-tours" *ngIf="userEvents?.length === 0">
+	Dieser Nutzer hat bisher an keinen Touren teilgenommen.
+</div>

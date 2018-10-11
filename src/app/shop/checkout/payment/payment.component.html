@@ -1,0 +1,22 @@
+<memo-payment-selection (methodSelected)="updateSelectedMethod($event)"></memo-payment-selection>
+
+
+<div [ngSwitch]="formGroup.get('method').value">
+	<div *ngSwitchCase="paymentMethodEnum.CASH" class="payment-selection-body">
+		<p>Die Rechnung wird dir per Email zugeschickt.</p>
+		<p>Gib das Geld bitte bei der nächsten Gelegenheit an eine zuständige Person.</p>
+	</div>
+	<memo-bank-account-form *ngSwitchCase="paymentMethodEnum.DEBIT" [formGroup]="formGroup" [selection]="true">
+
+	</memo-bank-account-form>
+	<div *ngSwitchCase="paymentMethodEnum.TRANSFER" class="payment-selection-body">
+		<p>Die Überweisungsdaten werden dir per Email zugeschickt.</p>
+	</div>
+	<div *ngSwitchDefault class="payment-selection-body">
+		<p>Bitte wähle eine Bezahlmethode aus!</p>
+	</div>
+</div>
+
+<div class="loader-wrapper" *ngIf="loading">
+	<div class="loader"></div>
+</div>

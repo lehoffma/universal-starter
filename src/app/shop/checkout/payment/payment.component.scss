@@ -1,0 +1,23 @@
+
+form {
+	display: flex;
+	flex-direction: column;
+
+	> div {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+}
+
+button {
+	width: 100%;
+}
+
+.loader-wrapper {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.payment-selection-body {
+	padding: 1rem;
+}

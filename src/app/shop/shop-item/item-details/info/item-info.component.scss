@@ -1,0 +1,100 @@
+@import "mixins";
+@import "../centered-container";
+@import "variables";
+
+:host {
+	display: block;
+	background-color: white;
+	color: $container-content--color;
+	padding: 1.5rem;
+
+	.item-details-row {
+		display: flex;
+		border-bottom: 1px solid #ededed;
+		background: white;
+		margin: -1.5rem;
+		margin-bottom: 1.5rem;
+		padding: 0.5rem 1rem;
+		font-size: 1.1rem;
+		min-height: 60px;
+
+		mat-icon,
+		memo-capacity-renderer /deep/ mat-icon {
+			color: rgba(0, 0, 0, 0.4);
+		}
+
+		&:not(.item-price-container),
+		memo-capacity-renderer {
+			display: flex;
+			align-items: center;
+			font-size: 1rem;
+
+			/deep/ > span {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.item-price-container {
+		border-top: 1px solid #ededed;
+
+		mat-icon {
+			margin-top: 10px;
+		}
+
+		memo-price-renderer {
+			padding-top: 2px;
+			margin-left: 10px;
+			width: 100%;
+
+			/deep/ .discount-overlay-trigger {
+				margin-left: calc(100% - 260px);
+				margin-top: -3px;
+			}
+
+			/deep/ .price-container {
+				> span {
+					height: 40px;
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
+	}
+
+	.object-info-container {
+		display: flex;
+		justify-content: space-between;
+		margin: -1.5rem;
+		padding: 1.5rem;
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		background-color: $container-header--background-color;
+		color: $container-header--color;
+		border-bottom: $container-divider--height solid $container-divider--color;
+
+		.object-info {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			div:first-child {
+				font-size: 1.1rem;
+			}
+			div:not(:first-child) {
+				font-size: 0.9rem;
+			}
+		}
+	}
+
+}
+
+:host /deep/ .sb-buttons.sb-style.sb-style-colors {
+	justify-content: center;
+	width: 100%;
+}
+
+share-buttons {
+	width: 100%;
+	justify-content: center;
+}

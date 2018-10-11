@@ -1,14 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>NgUniversalDemo</title>
-  <base href="/">
+	<base href="/">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="decorator" content="default"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+	<!--TODO: theme-farben für mobile-->
+	<!--Chrome, Firefox OS, Opera and Vivaldi-->
+	<meta name="theme-color" content="#4caf50">
+	<!--&lt;!&ndash;Windows Phone&ndash;&gt;-->
+	<meta name="msapplication-navbutton-color" content="#4caf50">
+	<!--&lt;!&ndash;iOS Safari&ndash;&gt;-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#4caf50">
+	<meta name="google-site-verification" content="8CpoAVfal6E5X9LA3wQAmJ3mmDA9gcEKoH9qJqJHczs"/>
+	<meta name="google-site-verification" content="wEY32WN-RKutyuvplIHacLoNBjRLQK7J8xQx1jDj5t8" />
+
+	<!--todo meta tags anpassen-->
+	<meta name="description" content="Deine Anlaufstelle für Meilenwölfe Touren, Events und Merchandise!"/>
+	<meta property="og:url" content="https://shop.meilenwoelfe.de"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:title" content="Der Meilenwoelfe Online Shop"/>
+	<meta property="og:description" content="Deine Anlaufstelle für Meilenwölfe Touren, Events und Merchandise!"/>
+	<meta property="og:image" content="resources/images/favicon.png"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="resources/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="resources/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/icons/favicon-16x16.png">
+	<link rel="manifest" href="manifest.json">
+	<link rel="mask-icon" href="resources/icons/safari-pinned-tab.svg" color="#4caf50">
+
+
+	<!--TODO favicon-->
+	<link rel="icon" href="resources/images/favicon.png">
+
+	<!--Roboto fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<!--Material icons-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--<script src="https://www.paypalobjects.com/api/checkout.min.js" defer></script>-->
+
+	<style>
+		noscript {
+			font-family: "Roboto", sans-serif;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: rgba(0, 0, 0, 0.8);
+			height: 100%;
+			width: 100%;
+			min-height: 100%;
+			margin-top: 20%;
+			font-weight: 100;
+		}
+
+		noscript img {
+			width: 150px;
+			height: 150px;
+			background-size: contain;
+		}
+
+		noscript h2 {
+			font-weight: 300;
+		}
+	</style>
+
+	<title>Meilenwölfe Online Shop</title>
 </head>
 <body>
-  <app-root></app-root>
+
+<main>
+	<memo-app>
+		<div class="loader-wrapper">
+			<div class="loader"></div>
+		</div>
+	</memo-app>
+</main>
+
+<noscript>
+	<img src="resources/images/Logo.png" class="header-logo"/>
+	<h2>Um den Meilenshop benutzen zu können, musst du Javascript aktivieren.</h2>
+</noscript>
+
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "WebSite",
+	"url": "https://shop.meilenwoelfe.de/",
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": "https://shop.meilenwoelfe.de/search?searchTerm=={search_term_string}",
+		"query-input": "required name=search_term_string"
+	}
+}
+
+</script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+.search-input {
+	font-size: 1rem;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	width: 200px;
+
+	@media all and (max-width: 340px) {
+		width: 130px;
+	}
+
+}
+
+.material-icons {
+	vertical-align: middle;
+}
+
+form:not(.expanded-mobile) {
+	.cart-icon {
+		height: 1.5rem;
+		width: 1.5rem;
+		font-size: 1.5rem;
+		cursor: pointer;
+	}
+
+	/*change size of hamburger menu*/
+	.material-icons {
+		height: 1.7rem;
+		width: 1.7rem;
+		font-size: 1.7rem;
+	}
+}
+
+.expanded-mobile {
+	display: flex;
+
+	> button {
+		margin: auto;
+	}
+	::ng-deep .mat-input-wrapper {
+		padding-bottom: calc(64px / 2 - 16px) !important;
+	}
+
+	::ng-deep .mat-input-underline {
+		background: none;
+	}
+
+	::ng-deep .mat-input-ripple {
+		visibility: hidden !important;
+	}
+
+	mat-form-field {
+		width: calc(100% - 50px);
+	}
+}

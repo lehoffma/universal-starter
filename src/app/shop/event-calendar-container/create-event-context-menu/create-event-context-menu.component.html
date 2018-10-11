@@ -1,0 +1,29 @@
+<mat-dialog-content>
+	<a routerLink="/create/tours" [queryParams]="{date: isoDate}"
+	   (click)="close()"
+	   [class.disabled]="!(data?.tours | async)"
+	   *ngIf="data?.show.tours">
+		<img src="/resources/images/tour_image.jpg" class="card-image tour-image"/>
+		<div class="card-footer">
+			<span></span>Tour
+		</div>
+	</a>
+	<a routerLink="/create/partys" [queryParams]="{date: isoDate}"
+	   *ngIf="data?.show.partys"
+	   [class.disabled]="!(data?.partys | async)"
+	   (click)="close()">
+		<img src="/resources/images/event_image.jpg" class="card-image party-image"/>
+		<div class="card-footer">
+			<span>Event</span>
+		</div>
+	</a>
+	<a routerLink="/create/merch"
+	   *ngIf="data?.show.merch"
+	   [class.disabled]="!(data?.merch | async)"
+	   (click)="close()">
+		<img src="/resources/images/merch_image.jpg" class="card-image merch-image"/>
+		<div class="card-footer">
+			<span>Merch</span>
+		</div>
+	</a>
+</mat-dialog-content>

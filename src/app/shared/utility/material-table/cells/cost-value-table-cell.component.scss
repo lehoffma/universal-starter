@@ -1,0 +1,9 @@
+@import "theme";
+
+span {
+	color: $warn-default;
+
+	&.positive {
+		color: $primary-default;
+	}
+}

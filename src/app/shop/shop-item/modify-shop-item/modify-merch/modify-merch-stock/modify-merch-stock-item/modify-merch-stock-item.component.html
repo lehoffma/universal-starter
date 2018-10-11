@@ -1,0 +1,89 @@
+<form [formGroup]="formGroup" class="dialog-container" (ngSubmit)="emitDoneEvent()">
+	<div>
+		<div mat-dialog-content class="dialog-content-container">
+
+			<mat-form-field>
+				<input placeholder="Farbe"
+					   required
+					   [formControl]="formGroup.get('color').get('name')"
+					   name="colorInput" matInput>
+				<!--todo preset colors = colors that have been used in the table before?-->
+				<button mat-icon-button
+						type="button"
+						[colorPicker]="formGroup.get('color').get('hex').value"
+						[value]="formGroup.get('color').get('hex').value"
+						(colorPickerChange)="formGroup.get('color').get('hex').setValue($event)"
+						[style.background]="formGroup.get('color').get('hex').value"
+						[style.color]="textColor"
+						[cpPosition]="'left'"
+						matSuffix>
+					<mat-icon>
+						color_lens
+					</mat-icon>
+				</button>
+				<mat-error *ngIf="formGroup.get('color').hasError('required')">
+					Dieses Feld darf nicht leer bleiben!
+				</mat-error>
+			</mat-form-field>
+
+			<div class="add-size-form">
+				<form [formGroup]="addSizeFormGroup" (ngSubmit)="addSize(addSizeFormGroup.get('size').value)">
+					<mat-form-field>
+						<input matInput
+							   placeholder="Größe"
+							   formControlName="size"
+							   name="addSizeInput">
+						<mat-error *ngIf="addSizeFormGroup.get('size').hasError('duplicate')">
+							Diese Größe ist bereits in der Liste vorhanden!
+						</mat-error>
+
+					</mat-form-field>
+					<button mat-icon-button
+							[disabled]="!addSizeFormGroup.valid || addSizeFormGroup.get('size').value.length === 0"
+							color="primary">
+						<mat-icon
+							[matTooltip]="'Größe hinzufügen'"
+							[matTooltipPosition]="'above'">
+							add_box
+						</mat-icon>
+					</button>
+					<!--todo autocomplete for possibleSizes-->
+				</form>
+			</div>
+
+			<div class="sizes-container">
+				<div *ngFor="let size of availableSizes; let i = index" class="size-amount-select-container">
+					<span>{{size}}</span>
+
+					<div>
+						<mat-select [formControl]="formGroup.get('sizes').get(size)">
+							<mat-option *ngFor="let amount of availableAmounts" [value]="amount">
+								{{amount}}
+							</mat-option>
+						</mat-select>
+
+						<button mat-icon-button
+								type="button"
+								(click)="deleteSize(size, i)">
+							<mat-icon
+								[matTooltip]="'Größe löschen'"
+								[matTooltipPosition]="'above'">
+								delete
+							</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div mat-dialog-actions>
+		<button mat-icon-button type="button" matDialogClose>
+			<mat-icon>arrow_back</mat-icon>
+		</button>
+		<button mat-icon-button [disabled]="!formGroup.valid || formGroup.pending" type="submit" color="primary">
+			<mat-icon>done</mat-icon>
+		</button>
+	</div>
+
+</form>

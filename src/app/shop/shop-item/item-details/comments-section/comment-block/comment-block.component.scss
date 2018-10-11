@@ -1,0 +1,145 @@
+@import "theme";
+
+:host {
+	display: block;
+	margin: 12px 0;
+}
+
+.main-comment-container {
+	display: flex;
+	position: relative;
+
+	.comment-options {
+		cursor: pointer;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.comment-image-container {
+		display:none;
+
+		@media all and (min-width: 650px) {
+			display: block;
+			margin-left: 5px;
+			margin-right: 10px;
+			margin-top: 2px;
+		}
+
+		.comment-image {
+			border-radius: 50%;
+			border: 1px solid #c1c1c1;
+			width: 30px;
+			height: 30px;
+			object-fit: cover;
+
+			&.top-level{
+				width: 40px;
+				height: 40px;
+			}
+
+			&.dummy {
+				filter: grayscale(100%);
+			}
+		}
+
+	}
+	.comment-container {
+		width: 100%;
+
+		.comment-header {
+			display: flex;
+			align-items: center;
+			margin-right: 5px;
+			width: calc(100% - 30px);
+
+			.comment-author-name /deep/ a,
+			.comment-author-name {
+				font-size: 0.8rem;
+				text-decoration: none;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: $primary-default;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			.role-icon{
+				color: mat-color($primary);
+				height: 17px;
+				width: 16px;
+				margin-left: 2px;
+				font-size: 16px;
+			}
+
+			.comment-timestamp {
+				margin-left: 10px;
+				font-size: 0.7rem;
+			}
+
+		}
+
+		.comment-body {
+			font-size: 0.85rem;
+			margin: 5px 0 8px;
+			white-space: pre-line;
+		}
+
+		.comment-footer {
+			display: flex;
+			align-items: center;
+			font-size: 0.8rem;
+			color: grey;
+
+			span {
+				margin-left: 5px;
+
+				&:first-child {
+					margin-left: 0;
+					font-weight: 700;
+					font-size: 12px;
+				}
+
+				&:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+
+			&.dummy {
+				span {
+					color: grey;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+}
+
+.show-children-button-container {
+	color: mat-color($accent, 700);
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: 700;
+
+	 > span:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
+
+.reply-form-container {
+	padding: 10px;
+}
+
+.child-comments-container {
+
+	.children{
+		padding-left: 50px;
+	}
+
+}

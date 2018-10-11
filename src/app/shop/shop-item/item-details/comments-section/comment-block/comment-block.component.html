@@ -1,0 +1,109 @@
+<!--todo etwas anzeigen wenn keine comments vorhanden-->
+
+<ng-container *ngIf="comment$ | async; let commentObject">
+	<div class="main-comment-container" *ngIf="author$ | async; let author">
+		<a class="comment-image-container" routerLink="/members/{{author.id}}">
+			<img class="comment-image" [ngClass]="{'dummy': dummy}" [class.top-level]="commentObject.parent === null"
+				 memoUserPreview [user]="author"
+				 [lazySrc]="(author?.images.length > 0 ? author.images[0] : 'resources/images/Logo.png') | imageSize:'thumbnail' | async"
+				 lazySrcVisible="visible"
+			/>
+
+		</a>
+		<div class="comment-container">
+			<div class="comment-header">
+				<memo-profile-link class="comment-author-name" [user]="author"></memo-profile-link>
+
+				<mat-icon class="role-icon" title="{{author.clubRole}}">
+					{{author.clubRole | clubRoleIcon}}
+				</mat-icon>
+
+				<div class="comment-timestamp secondary-text"
+					 title="{{commentObject.timeStamp | dateFormat:'DD.MM.YYYY HH:mm:ss'}}">
+					{{distanceInWords(commentObject.timeStamp)}}
+				</div>
+			</div>
+			<!--todo directive that transforms @Username mentions to links?-->
+			<div class="comment-body">{{commentObject.content}}
+				<div class="dummy-comment-text secondary-text loading-text" *ngIf="dummy"></div>
+			</div>
+			<div class="comment-footer" [ngClass]="{'dummy': dummy}">
+				<span (click)="replyToComment(commentObject)">Antworten</span>
+
+				<ng-container *ngFor="let children of [children$ | async]">
+					<div class="show-children-button-container" *ngIf="children?.length > 0">
+						<span (click)="showChildren = !showChildren; showReplyBox = showChildren ? showReplyBox : false">
+							{{showChildren ? 'Verstecke' : 'Zeige'}} {{children?.length}} Antwort{{children?.length > 1 ? 'en' : ''}}
+						</span>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+
+		<!--todo edit => inline editing-->
+		<div class="comment-options"
+			 [style.visibility]="((loggedInUser$ | async)?.id === author.id && !dummy) ? 'visible' : 'hidden'"
+			 [ngClass]="{'show-element': isTouchDevice()}">
+
+			<mat-icon
+				[matMenuTriggerFor]="menu">
+				more_horiz
+			</mat-icon>
+
+			<mat-menu #menu="matMenu" xPosition="before">
+				<button mat-menu-item type="button" (click)="editComment(commentObject)">
+					<mat-icon>edit</mat-icon>
+					<span>Bearbeiten</span>
+				</button>
+				<button mat-menu-item type="button" (click)="deleteCurrentComment()">
+					<mat-icon>delete</mat-icon>
+					<span>Löschen</span>
+				</button>
+			</mat-menu>
+		</div>
+	</div>
+
+	<div class="reply-form-container child-comments-container"
+		 *ngIf="loggedInUser !== null && showReplyBox && !dummy">
+		<memo-comment-input (submitComment)="addComment($event, commentObject.id); showReplyBox = false"
+							(closeSubmitComment)="showReplyBox = false"
+							[author]="loggedInUser"
+							[focus]="true"
+							[commentText]="''">
+
+		</memo-comment-input>
+	</div>
+
+	<div class="child-comments-container" *ngFor="let children of [children$ | async]">
+		<div *ngIf="showChildren" class="children">
+			<memo-comment-block *ngFor="let child of children; trackBy:trackCommentBy"
+								[parentId]="commentObject.id"
+								[eventId]="eventId"
+								(onDelete)="deleteChildComment($event)"
+								(onAddComment)="addComment($event.commentText, $event.parentCommentId)"
+								[comment]="child"></memo-comment-block>
+
+			<ng-template [ngIf]="loadingChildren">
+				<memo-comment-block
+					[parentId]="commentObject.id"
+					[comment]="dummyComment"
+					[dummy]="true"
+				>
+
+				</memo-comment-block>
+			</ng-template>
+		</div>
+
+		<!--<div class="reply-form-container" *ngIf="showChildren && loggedInUser !== null && showReplyBox">-->
+			<!--<memo-comment-input (submitComment)="addComment($event, commentObject.id); showReplyBox = false"-->
+								<!--(closeSubmitComment)="showReplyBox = false"-->
+								<!--[author]="loggedInUser"-->
+								<!--[focus]="true"-->
+								<!--[commentText]="''">-->
+				<!--&lt;!&ndash;todo automatically insert @username mentions&ndash;&gt;-->
+
+			<!--</memo-comment-input>-->
+		<!--</div>-->
+	</div>
+
+</ng-container>

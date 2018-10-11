@@ -1,0 +1,57 @@
+@import "theme";
+
+:host {
+	display: flex;
+	align-items: flex-start;
+
+	.author-image-container {
+		display: none;
+
+		@media all and (min-width: 800px) {
+			display: block;
+
+			img {
+				width: 30px;
+				height: 30px;
+				object-fit: cover;
+				border-radius: 50%;
+				border: 1px solid #c1c1c1;
+
+			}
+		}
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
+		textarea {
+			flex-grow: 1;
+			resize: none;
+			min-height: 2rem;
+			padding: 0.4rem;
+
+			border: 0;
+			border-bottom: 1px solid #BDBDBD;
+			transition: border 0.2s ease-in;
+
+			&:focus {
+				border-color: $primary-default;
+				border-bottom-width: 3px;
+				outline: none;
+			}
+		}
+
+		div {
+			margin-top: 10px;
+			display: flex;
+			justify-content: flex-end;
+
+			button:first-child {
+				margin-right: 10px;
+			}
+		}
+	}
+
+}

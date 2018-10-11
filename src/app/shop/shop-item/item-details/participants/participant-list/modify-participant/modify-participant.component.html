@@ -1,0 +1,42 @@
+<form #modifyParticipantForm="ngForm" class="dialog-container" (ngSubmit)="emitDoneEvent()">
+	<div>
+		<h1 matDialogTitle>{{isEditing ? 'Teilnehmer modifizieren' : 'Füge einen Teilnehmer hinzu'}}</h1>
+		<div mat-dialog-content class="dialog-content-container">
+			<div>
+				<memo-user-autocomplete [required]="true" [resetOnSelect]="false"
+										[user]="participant.user"
+										(userChanged)="participant.user = $event"></memo-user-autocomplete>
+			</div>
+
+			<mat-form-field>
+				<mat-select [(value)]="participant.status">
+					<mat-option *ngFor="let status of availableStatus" [value]="status.status">
+						{{status.text}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<div class="participant-checkboxes">
+				<mat-checkbox name="isDriverCheckbox" #isDriverCheckbox="ngModel" [(ngModel)]="participant.isDriver">
+					Ist Fahrer
+				</mat-checkbox>
+				<mat-checkbox name="needsTicketCheckbox" #needsTicketCheckbox="ngModel"
+							  [(ngModel)]="participant.needsTicket">
+					Braucht Ticket
+				</mat-checkbox>
+			</div>
+		</div>
+
+	</div>
+	<div mat-dialog-actions>
+		<button mat-icon-button type="button" matDialogClose>
+			<mat-icon>arrow_back</mat-icon>
+		</button>
+		<button mat-icon-button [disabled]="!modifyParticipantForm.form.valid || participant.user === null ||
+					participant.user?.id === -1"
+				type="submit" color="primary">
+			<mat-icon>done</mat-icon>
+		</button>
+	</div>
+
+</form>

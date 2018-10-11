@@ -1,0 +1,34 @@
+:host {
+	padding-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.stock-table-container,
+.action-buttons {
+	max-width: 600px;
+	width: 100%;
+}
+
+.stock-table-container {
+	background: white;
+
+	@media all and (min-width: 800px) {
+		background: none;
+		padding: 0;
+	}
+}
+
+.action-buttons {
+	display: flex;
+	margin-top: 20px;
+	justify-content: flex-end;
+}
+
+@media all and (min-width: 600px) {
+	:host {
+		padding: 1rem;
+	}
+}

@@ -1,0 +1,27 @@
+[
+	{
+		"route": "members/PROFILE_ID",
+		"icon": "",
+		"name": "Dein Profil"
+	},
+	{
+		"route": "my-events",
+		"icon": "",
+		"name": "Deine Events"
+	},
+	{
+		"route": "order-history",
+		"icon": "",
+		"name": "Deine Bestellungen"
+	},
+	{
+		"route": "members/PROFILE_ID/edit",
+		"icon": "",
+		"name": "Dein Account"
+	},
+	{
+		"route": "",
+		"icon": "",
+		"name": "Logout"
+	}
+]

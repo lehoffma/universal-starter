@@ -1,0 +1,12 @@
+<memo-expandable-material-table
+	[dataService]="userService"
+	[filter$]="filter$"
+	[rowActions]="rowActions$ | async"
+	[permissions]="memberListService.permissions$ | async"
+	[columns]="columns"
+	[title]="'Mitgliederliste'"
+	[displayedColumns]="displayedColumns$ | async"
+	(onAction)="memberListService.handleTableAction($event)"
+>
+
+</memo-expandable-material-table>

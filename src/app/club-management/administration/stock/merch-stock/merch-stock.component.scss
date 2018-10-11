@@ -1,0 +1,130 @@
+:host {
+	min-height: calc(100vh - 64px - 85px);
+
+	@media all and(min-width: 650px) {
+		display: flex;
+	}
+}
+
+.content-wrapper {
+	padding: 1rem;
+}
+
+.desktop {
+	display: none;
+}
+
+.stock-entry-container {
+	flex: 1;
+	.stock-options {
+		display: flex;
+		background-color: white;
+		padding: 0.5rem;
+		justify-content: space-evenly;
+
+		* {
+			width: 50%;
+		}
+	}
+}
+
+memo-merch-stock-feed {
+	display: none;
+}
+
+img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.no-results {
+	display: flex;
+	justify-content: center;
+}
+
+.loading-container {
+	position: relative;
+	top: 200px;
+}
+
+.toolbar-add-button {
+	display: none;
+}
+
+.add-merch-button {
+	display: flex;
+	justify-content: center;
+	margin: -1rem;
+	margin-bottom: 1rem;
+	background: white;
+}
+
+memo-merch-stock-entry:not(:first-of-type) {
+	margin-top: 1rem;
+}
+
+@media all and (min-width: 650px) {
+	.add-merch-button {
+		display: none;
+	}
+
+	.toolbar-add-button {
+		display: block;
+		margin-top: -1rem;
+		margin-bottom: -1rem;
+	}
+
+	.add-merch-button {
+		display: none;
+	}
+
+	.stock-options-sidebar {
+		display: block;
+		width: 330px;
+		border-right: 1px solid #e0e0e0;
+		background: white;
+		padding: 13px;
+		overflow-y: auto;
+	}
+	.stock-entry-container {
+		.stock-options {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: white;
+			padding: 1rem;
+			border-right: 1px solid #e0e0e0;
+			border-bottom: 1px solid #e0e0e0;
+			z-index: 2;
+			* {
+				width: auto;
+			}
+		}
+	}
+	.desktop {
+		display: block;
+	}
+	.mobile {
+		display: none;
+	}
+
+	memo-merch-stock-feed /deep/ h3 {
+		height: 57px;
+	}
+}
+
+@media all and (min-width: 1000px) {
+	.stock-entry-container {
+		flex: 1;
+		margin-bottom: 30px;
+	}
+
+	memo-merch-stock-feed {
+		display: block;
+		width: 300px;
+		overflow-y: hidden;
+	}
+}
+
+

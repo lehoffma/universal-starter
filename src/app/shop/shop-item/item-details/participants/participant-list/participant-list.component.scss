@@ -1,0 +1,22 @@
+@import "~@angular/material/theming";
+
+$breakpoint: 600px;
+
+.participant-table-container {
+
+	@media all and (min-width: $breakpoint) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+memo-expandable-material-table {
+	width: 100%;
+
+	@media all and (min-width: calc(800px + 2rem)) {
+		@include mat-elevation(3);
+		max-width: 800px;
+		margin-top: 1rem;
+	}
+}

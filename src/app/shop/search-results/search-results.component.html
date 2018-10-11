@@ -1,0 +1,62 @@
+<div class="filter-sidebar">
+	<memo-filtering-menu [filterOptions]="filterOptions$ | async"></memo-filtering-menu>
+</div>
+
+
+<div class="results-container">
+	<div>
+		<div class="sorting-results-modifier-container">
+			<memo-filtering-menu [filterOptions]="filterOptions$ | async"></memo-filtering-menu>
+			<memo-sorting-dropdown [sortingOptions]="sortingOptions"></memo-sorting-dropdown>
+		</div>
+
+
+		<div class="add-button mobile-add-button-container mat-elevation-z2">
+			<button mat-stroked-button *ngIf="userCanAddItem$ | async"
+					[matTooltip]="'Artikel hinzufügen'"
+					[matTooltipPosition]="'above'"
+					(click)="openCreateDialog()"
+					class="mobile-add-button">
+				<mat-icon>add</mat-icon>
+				Hinzufügen
+			</button>
+
+		</div>
+
+		<div *ngIf="(keywords | async).length >= 0" class="search-results-container">
+			<div class="search-results-header">
+				<div class="flex-row">
+					<div class="add-button">
+						<button mat-stroked-button *ngIf="userCanAddItem$ | async"
+								[matTooltip]="'Artikel hinzufügen'"
+								[matTooltipPosition]="'above'"
+								(click)="openCreateDialog()"
+								class="toolbar-add-button">
+							Hinzufügen
+						</button>
+
+					</div>
+					<span>
+						{{resultsTitle | async}}
+					</span>
+				</div>
+				<div class="search-results-actions">
+
+					<memo-filtering-menu [filterOptions]="filterOptions$ | async"></memo-filtering-menu>
+					<!--todo-->
+					<!--<button mat-stroked-button class="add-button">-->
+					<!--Hinzufügen-->
+					<!--</button>-->
+					<memo-sorting-dropdown [sortingOptions]="sortingOptions"></memo-sorting-dropdown>
+				</div>
+			</div>
+
+			<memo-results [events]="results$ | async"></memo-results>
+		</div>
+	</div>
+	<mat-paginator [length]="(currentPage$ | async)?.totalElements"
+				   [pageSize]="(currentPage$ | async).pageSize"
+				   [pageSizeOptions]="[20]"
+				   (page)="updatePage($event)">
+	</mat-paginator>
+</div>

@@ -1,0 +1,41 @@
+<div class="login-title" routerLink="/">
+	<a routerLink="/"><img src="../../../resources/images/Logo.png"/></a>
+	<span>Meilenwoelfe e.V.</span>
+</div>
+
+<mat-card>
+	<span mat-card-title>Login</span>
+	<form [formGroup]="formGroup" (ngSubmit)="checkLogin()">
+		<memo-email-input [form]="formGroup"></memo-email-input>
+		<memo-password-input [form]="formGroup" [showStrengthBar]="false"
+							 [repeatPassword]="false"></memo-password-input>
+
+		<span [style.visibility]="error ? 'visible' : 'hidden'" class="wrong-input error-message">
+			{{error ? error : 'Die eingegebenen Daten sind falsch.'}}
+		</span>
+
+		<div class="login-form-actions">
+			<mat-checkbox [(ngModel)]="authService.saveLogin" [ngModelOptions]="{standalone: true}"
+						  name="saveLogin">
+				Login merken
+			</mat-checkbox>
+			<button type="submit"
+					mat-raised-button
+					[disabled]="!formGroup.valid || formGroup.pending"
+					color="primary">
+				<span *ngIf="!loading; else loadingSpinner">
+				{{'Einloggen' | uppercase}}
+				</span>
+				<ng-template #loadingSpinner>
+					<mat-icon class="loading-spinner">refresh</mat-icon>
+					{{'Überprüfe...' | uppercase}}
+				</ng-template>
+			</button>
+		</div>
+	</form>
+
+	<div class="non-login-actions">
+		<a routerLink="../signup">Registrieren</a>
+		<a routerLink="../forgot-password">Passwort vergessen?</a>
+	</div>
+</mat-card>

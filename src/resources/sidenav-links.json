@@ -1,0 +1,143 @@
+[
+	{
+		"route": "",
+		"icon": "home",
+		"name": "Startseite"
+	},
+	{
+		"route": "tours",
+		"icon": "drive_eta",
+		"name": "Fahrten"
+	},
+	{
+		"route": "partys",
+		"icon": "local_bar",
+		"name": "Veranstaltungen"
+	},
+	{
+		"route": "merch",
+		"icon": "local_offer",
+		"name": "Merchandise"
+	},
+	{
+		"route": "calendar",
+		"icon": "event",
+		"name": "Kalender"
+	},
+	{
+		"route": "leaderboard",
+		"icon": "format_list_numbered",
+		"name": "Meilentabelle"
+	},
+	{
+		"name": "Mitgliedschaft",
+		"icon": "",
+		"route": "",
+		"children": [
+			{
+				"route": "/applyForMembership",
+				"name": "Mitglied werden",
+				"icon": "book"
+			},
+			{
+				"route": "/requestMembership",
+				"loginNeeded": true,
+				"name": "Mitgliedsstatus ändern",
+				"icon": "email"
+			}
+		]
+	},
+	{
+		"route": "",
+		"icon": "",
+		"name": "Accountverwaltung",
+		"loginNeeded": true,
+		"children": [
+			{
+				"route": "members/PROFILE_ID",
+				"icon": "account_circle",
+				"name": "Dein Profil"
+			},
+			{
+				"route": "my-events",
+				"icon": "event",
+				"name": "Deine Events"
+			},
+			{
+				"route": "order-history",
+				"icon": "history",
+				"name": "Deine Bestellungen"
+			},
+			{
+				"route": "members/PROFILE_ID/edit",
+				"icon": "description",
+				"name": "Dein Account"
+			}
+		]
+	},
+	{
+		"route": "management",
+		"icon": "",
+		"name": "Vereinsverwaltung",
+		"loginNeeded": true,
+		"minimumPermission": {
+			"userManagement": 1,
+			"merch": 1,
+			"tour": 1,
+			"party": 1,
+			"funds": 0,
+			"stock": 0,
+			"settings": 0
+		},
+		"children": [
+			{
+				"route": "management/costs",
+				"icon": "payment",
+				"name": "Kostenübersicht",
+				"minimumPermission": {
+					"userManagement": 1,
+					"merch": 1,
+					"tour": 1,
+					"party": 1,
+					"funds": 1,
+					"stock": 1
+				}
+			},
+			{
+				"route": "management/orders",
+				"icon": "assignment",
+				"name": "Bestellungen"
+			},
+			{
+				"route": "members",
+				"icon": "view_list",
+				"name": "Mitgliederliste"
+			},
+			{
+				"route": "management/stock",
+				"icon": "local_shipping",
+				"name": "Bestand",
+				"minimumPermission": {
+					"userManagement": 1,
+					"merch": 1,
+					"tour": 1,
+					"party": 1,
+					"funds": 0,
+					"stock": 1
+				}
+			}
+		]
+	},
+	{
+		"route": "impressum",
+		"icon": "info",
+		"name": "Impressum",
+		"drawLineAbove": true
+	},
+	{
+		"route": null,
+		"link": "http://meilenwoelfe.de/meilenblog",
+		"icon": "web",
+		"name": "Blog"
+	}
+]

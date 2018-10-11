@@ -1,0 +1,139 @@
+@import "mixins";
+@import "theme";
+
+.result-entry-container {
+	background-color: white;
+	display: flex;
+	flex-direction: column-reverse;
+	text-decoration: none;
+	color: black;
+	margin: 1rem;
+	box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+
+	border-bottom: 1px solid #e0e0e0;
+
+	.result-entry-info-container {
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem;
+		flex-direction: column;
+
+		.result-title {
+			margin: 0;
+			font-weight: 400;
+			font-size: 1.1rem;
+			word-break: break-all;
+		}
+		.result-info {
+			display: flex;
+			justify-content: space-between;
+			font-size: 0.9rem;
+			align-items: flex-end;
+
+			div:not(.result-title) {
+				margin-top: 20px;
+			}
+		}
+
+		.result-price {
+			font-size: 1.1rem;
+			color: red;
+		}
+
+	}
+
+	.result-entry-image-container {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+
+		img {
+			height: 10rem;
+			object-fit: cover;
+			&.past {
+				filter: grayscale(1);
+			}
+		}
+	}
+}
+
+.merch-available-colors-container {
+	display: flex;
+
+	.merch-available-colors {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+
+		&:not(:first-child) {
+			margin-left: 10px;
+		}
+	}
+}
+
+@media all and (min-width: 650px) {
+	.result-title {
+		word-break: initial;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.result-entry-container {
+		margin: 0;
+
+		background-color: white;
+		padding: 0;
+		cursor: pointer;
+		transition: box-shadow 0.5s;
+
+		> div {
+			flex-direction: column-reverse;
+
+			.result-entry-info-container {
+				width: auto;
+				padding: 10px;
+				flex-direction: column;
+				height: 100px;
+			}
+
+			.result-entry-image-container img {
+				width: auto;
+				height: 150px;
+			}
+
+		}
+
+		&:hover {
+			box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+			//border-color: black;
+		}
+	}
+
+}
+
+memo-price-renderer {
+	/deep/ .price-container {
+		flex-direction: column-reverse;
+
+		.percentage-saved,
+		.actual-price,
+		.base-price {
+			margin: 0;
+		}
+
+		.percentage-saved {
+			display: none;
+		}
+
+		.actual-price {
+			color: $warn-default;
+		}
+
+		.base-price {
+			font-size: 0.85em;
+		}
+	}
+}
+

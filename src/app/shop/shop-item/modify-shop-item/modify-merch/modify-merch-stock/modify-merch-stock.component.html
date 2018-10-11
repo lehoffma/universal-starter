@@ -1,0 +1,9 @@
+<memo-expandable-material-table
+	[columns]="columns"
+	[displayedColumns]="displayedColumns"
+	(onAction)="modifyMerchStockService.handleTableAction($event)"
+	[permissions]="modifyMerchStockService.permissions$ | async"
+	[title]="'Bestand' + (merchTitle ? ' von ' + merchTitle : '')"
+	[dataService]="dataService">
+
+</memo-expandable-material-table>

@@ -1,0 +1,35 @@
+
+.dialog-container {
+	max-height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.dialog-content-container {
+		display: flex;
+		flex-direction: column;
+
+		mat-form-field {
+			width: 100%;
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		.participant-checkboxes {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 15px;
+		}
+	}
+
+	.mat-dialog-actions {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+memo-user-autocomplete /deep/ mat-form-field {
+	width: 100%;
+}

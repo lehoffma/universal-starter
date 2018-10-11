@@ -1,0 +1,41 @@
+@import "theme";
+@import "~@angular/material/theming";
+
+.social-media-links {
+	display: flex;
+	justify-content: center;
+	background-color: mat-color($primary, 700);
+	padding: 1rem;
+	color: white;
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+
+	fa-icon {
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+}
+
+.breadcrumbs {
+	display: flex;
+	justify-content: center;
+	background: mat-color($primary, 800);
+	padding: 1rem;
+
+	memo-breadcrumb-navigation {
+		max-width: 600px;
+		flex: 1;
+	}
+}
+
+.copyright {
+	background: mat-color($primary, 900);
+	display: flex;
+	color: white;
+	justify-content: center;
+	padding: 0.5rem;
+	font-size: 0.8em;
+}

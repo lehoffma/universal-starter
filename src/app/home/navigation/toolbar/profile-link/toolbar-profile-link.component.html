@@ -1,0 +1,24 @@
+<!--user is logged in -> show profile picture -->
+<div *ngIf="user | async as loggedInUser; else logInButton" class="dropdown profile-picture-container">
+	<button mat-button class="dropbtn" routerLink="{{'members/' + loggedInUser.id}}">
+		<img class="profile-picture"
+			 src="{{(loggedInUser.images.length > 0 ? loggedInUser.images[0] : 'resources/images/Logo.png') | imageSize:'thumbnail' | async}}">
+	</button>
+
+	<div class="dropdown-content profile-picture-dropdown-content">
+		<a *ngFor="let childLink of (accountLinks | async)"
+		   (click)="childLink.name === 'Logout' ? logout() : null"
+		   routerLink="{{childLink.route}}"
+		   routerLinkActive="active">
+			<mat-icon *ngIf="childLink.icon">{{childLink.icon}}</mat-icon>
+			{{childLink.name}}</a>
+	</div>
+</div>
+<!--user is not logged in -> show log-in button instead -->
+<ng-template #logInButton>
+	<div class="login-button-container">
+		<button mat-stroked-button (click)="takeToLogin()">
+			Login
+		</button>
+	</div>
+</ng-template>
